@@ -38,7 +38,8 @@ export default class View extends ManagedObject {
             }
             view._parent = this;
             this._subviews.push(view);
-            this.$container.append(view.$element);
+            // this.$container.append(view.$element);
+            view.placeAt(this.$container);
         }
     }
 
@@ -72,6 +73,11 @@ export default class View extends ManagedObject {
         if (this.parent) {
             this.parent.removeSubView(this);
         }
+    }
+
+    placeAt(target) {
+        const $target = $(target);
+        $target.append(this.$element);
     }
 
     $(...args) {

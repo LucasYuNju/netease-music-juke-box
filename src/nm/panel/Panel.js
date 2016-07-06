@@ -2,10 +2,10 @@ import View from "../../nju/view/View";
 
 export default class Panel extends View {
     init() {
-        this._title = "";
+        super.init();
         this.addStyleClass("nm-panel");
+        this._title = "";
         this._initLayout();
-
     }
 
     get title() {
