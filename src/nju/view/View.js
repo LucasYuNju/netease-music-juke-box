@@ -27,11 +27,11 @@ export default class View extends ManagedObject {
         this.$element.toggleClass(...args);
     }
 
-    get subViews() {
+    get subviews() {
         return this._subviews;
     }
 
-    addSubView(view) {
+    addSubview(view, $container = this.$container) {
         if (view instanceof View) {
             if (view.parent) {
                 view.$element.removeFromParent();
@@ -39,23 +39,23 @@ export default class View extends ManagedObject {
             view._parent = this;
             this._subviews.push(view);
             // this.$container.append(view.$element);
-            view.placeAt(this.$container);
+            view.placeAt($container);
         }
     }
 
-    addSubViews(views) {
+    addSubviews(views, $container = this.$container) {
         if(Array.isArray(views)) {
-            views.forEach(view => this.addSubView(view));
+            views.forEach(view => this.addSubview(view, $container));
         }
     }
 
-    removeAllSubViews(neverUseAgain = false) {
+    removeAllSubviews(neverUseAgain = false) {
         while (this.subviews.length > 0) {
-            this.removeSubView(this.subviews[0], neverUseAgain);
+            this.removeSubview(this.subviews[0], neverUseAgain);
         }
     }
 
-    removeSubView(view, neverUseAgain = false) {
+    removeSubview(view, neverUseAgain = false) {
         const idx = this.subviews.indexof(view);
         if(idx !== -1) {
             view._parent = null;
@@ -71,7 +71,7 @@ export default class View extends ManagedObject {
 
     removeFromParent() {
         if (this.parent) {
-            this.parent.removeSubView(this);
+            this.parent.removeSubview(this);
         }
     }
 
@@ -81,6 +81,6 @@ export default class View extends ManagedObject {
     }
 
     $(...args) {
-        this.$element.find(...args);
+        return this.$element.find(...args);
     }
 }
