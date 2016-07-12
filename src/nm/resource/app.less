@@ -1,0 +1,60 @@
+html, body
+{
+    width: 100%;
+    height: 100%;
+    background-color: @body-bg;
+}
+
+.nm-app
+{
+    display: flex;
+    flex-direction: column;
+
+    > header, > footer, > main > .sidebar, > main > .content
+    {
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    > header
+    {
+        display: flex;
+        align-items: center;
+        height: @nm-app-header-height;
+        background-color: @nm-app-color;
+        color: white;
+
+        > h1
+        {
+            margin-left: 20px;
+        }
+    }
+
+    > main
+    {
+        display: flex;
+        flex: 1;
+
+        > aside
+        {
+            flex-grow: 1;
+            border-right: 1px solid @nm-separate-color;
+            background-color: @nm-app-darker-bg;
+            overflow-y: auto;
+        }
+
+        > section
+        {
+            flex-grow: 4;
+            // background-color: cyan;
+            overflow-y: auto;
+        }
+    }
+
+    > footer
+    {
+        border-top: 1px solid @nm-separate-color;
+        background-color: @nm-app-darker-bg;
+        height: @nm-app-footer-height;
+    }
+}

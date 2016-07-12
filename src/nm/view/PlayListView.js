@@ -1,12 +1,25 @@
-import View from "../../nju/view/View";
+import ListView from "../../nju/view/ListView";
 
-export default class PlayListView extends View {
+export default class PlayListView extends ListView {
     init() {
         super.init();
-        this.addStyleClass("nm-play-list-view");        
+        this.addStyleClass("nm-play-list-view");
     }
 
-    getElementTag() {
-        return "ul";
+    $createNewItem() {
+        const $li = super.$createNewItem();
+        $li.append(`
+            <span class="icon"></span>
+            <span class="text"></span>
+        `);
+        return $li;
+    }
+
+    $renderItem(item, $li) {
+        super.$renderItem(item, $li);
+        // console.log(item.name);
+        // console.log($li.children(".text"));
+        // $li.text("foo");
+        $li.children(".text").text(item.name);
     }
 }

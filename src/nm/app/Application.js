@@ -1,5 +1,8 @@
 import NJUApplication from "../../nju/app/Application";
 import PlayListView from "../view/PlayListView";
+import TrackTableView from "../view/TrackTableView"
+import PlayerView from "../view/PlayerView";
+import ServiceClient from "../service/ServiceClient";
 
 export default class Application extends NJUApplication
 {
@@ -9,13 +12,15 @@ export default class Application extends NJUApplication
         this.addStyleClass("nm-app");
         this._initLayout();
         this.initPlayListView();
+        this.initTrackTableView();
+        this.initPlayerView();
     }
 
     _initLayout() {
         this.$element.append(`
             <header><h1>黄易云音乐</h1></header>
             <main>
-                <aside></aside>
+                <aside class="sidebar"></aside>
                 <section class="content"></section>
             </main>
             <footer></footer>
@@ -24,10 +29,31 @@ export default class Application extends NJUApplication
 
     initPlayListView() {
         this.playListView = new PlayListView("play-list");
-        this.addSubview(this.playListView, this.$("> main > aside"));
+        this.addSubview(this.playListView, this.$("> main > aside.sidebar"));
     }
 
-    run() {
+    initTrackTableView() {
+        this.trackTableView = new TrackTableView("track-table");
+        this.addSubview(this.trackTableView, this.$("> main > section"));
+    }
+
+    initPlayerView() {
+        this.playerView = new PlayerView("play-view");
+        this.addSubview(this.playerView, this.$("> footer"))
+    }
+
+    async run() {
+        try {
+            await ServiceClient.getInstance().login();
+            this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
+        } catch (e) {
+            throw e;
+        }
+
+        // pseudo login
+        // refresh play list view
+        // select first play list by default
+        // select first track by default
         console.log("Netease Music Application is now running.");
     }
 }
