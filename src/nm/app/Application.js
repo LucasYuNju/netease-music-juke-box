@@ -6,7 +6,6 @@ import ServiceClient from "../service/ServiceClient";
 
 export default class Application extends NJUApplication
 {
-
     init() {
         super.init();
         this.addStyleClass("nm-app");
@@ -43,17 +42,18 @@ export default class Application extends NJUApplication
     }
 
     async run() {
-        try {
-            await ServiceClient.getInstance().login();
-            this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
-        } catch (e) {
-            throw e;
-        }
-
         // pseudo login
+        console.log("Netease Music Application is now running.");
+
+        await ServiceClient.getInstance().login();
+        this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
+
+        // FIXME uid is null
+        const playlist = await ServiceClient.getInstance().getPlayListDetail(this.playListView.items[0].id);
+        this.trackTableView.items = playlist.tracks;
+
         // refresh play list view
         // select first play list by default
         // select first track by default
-        console.log("Netease Music Application is now running.");
     }
 }

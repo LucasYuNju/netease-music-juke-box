@@ -10,7 +10,7 @@ html, body
     display: flex;
     flex-direction: column;
 
-    > header, > footer, > main > .sidebar, > main > .content
+    > header, > footer, > main > aside.sidebar, > main > section.content
     {
         position: relative;
         flex-shrink: 0;
@@ -37,7 +37,9 @@ html, body
 
         > aside
         {
-            flex-grow: 1;
+            width: @nm-app-sidebar-width;
+            // FIXME
+            // flex-grow: 1;
             border-right: 1px solid @nm-separate-color;
             background-color: @nm-app-darker-bg;
             overflow-y: auto;
@@ -45,8 +47,7 @@ html, body
 
         > section
         {
-            flex-grow: 4;
-            // background-color: cyan;
+            flex-grow: 1;
             overflow-y: auto;
         }
     }

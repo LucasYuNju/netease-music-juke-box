@@ -17,7 +17,7 @@ export default class ServiceClient {
         this._userId = "7042728";
     }
 
-    async getUserPlayLists(uid = this.userId) {
+    async getUserPlayLists(uid = "7042728") {
         let res = null;
         try {
             res = await $.ajax({

@@ -15,11 +15,12 @@ export default class PlayListView extends ListView {
         return $li;
     }
 
-    $renderItem(item, $li) {
-        super.$renderItem(item, $li);
-        // console.log(item.name);
-        // console.log($li.children(".text"));
-        // $li.text("foo");
-        $li.children(".text").text(item.name);
+    renderItem(item, $item) {
+        super.renderItem(item, $item);
+        $item.children(".text").text(item.name);
+    }
+
+    getChildElementTag() {
+        return "<li>"
     }
 }

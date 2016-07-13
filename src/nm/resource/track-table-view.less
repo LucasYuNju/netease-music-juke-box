@@ -1,10 +1,13 @@
 .nm-track-table-view
 {
-    background-color: red;
-
     // table 默认这三个属性
-    // height: 100px;
     // width: 100%;
-    // table-layout: fixed;
-    // border-collapse: collapse;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    td
+    {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
