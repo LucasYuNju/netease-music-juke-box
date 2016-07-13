@@ -45,15 +45,14 @@ export default class Application extends NJUApplication
         // pseudo login
         console.log("Netease Music Application is now running.");
 
+        // refresh play list view
         await ServiceClient.getInstance().login();
         this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
+        // select first play list by default
         this.playListView.selection = this.playListView.items[0];
 
         const playlist = await ServiceClient.getInstance().getPlayListDetail(this.playListView.items[0].id);
         this.trackTableView.items = playlist.tracks;
-
-        // refresh play list view
-        // select first play list by default
         // select first track by default
     }
 }
