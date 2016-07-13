@@ -3,9 +3,12 @@
     // table 默认这三个属性
     table-layout: fixed;
     border-collapse: collapse;
+}
 
-    &.striped
+.nju-table-view.striped
+{
+    tr:nth-child(odd)
     {
-
+        background: @nju-striped-color;
     }
 }

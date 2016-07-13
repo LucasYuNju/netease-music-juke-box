@@ -1,9 +1,45 @@
 .nm-track-table-view
 {
+    width: 100%;
+    // 列的居中对齐，最好用colgroup
+    // table是table-layout，用flex就没有意义了
 
-    td
+    tr
     {
-        overflow: hidden;
-        text-overflow: ellipsis;
+        line-height: @nm-list-item-height;
+
+        td
+        {
+            padding-left: 8px;
+            padding-right: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    thead > tr
+    {
+        border-bottom: 1px solid @nm-separate-color;
+
+        td:not(:last-child)
+        {
+            border-right: 1px solid @nm-separate-color;
+        }
+
+        .play-time
+        {
+            width: 80px;
+        }
+
+        .artists
+        {
+            width: 200px;
+        }
+
+        .album
+        {
+            width: 320px;
+        }
     }
 }

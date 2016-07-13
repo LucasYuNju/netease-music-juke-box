@@ -14,6 +14,7 @@ html, body
     {
         position: relative;
         flex-shrink: 0;
+        // display: flex;
     }
 
     > header
@@ -38,8 +39,6 @@ html, body
         > aside
         {
             width: @nm-app-sidebar-width;
-            // FIXME
-            // flex-grow: 1;
             border-right: 1px solid @nm-separate-color;
             background-color: @nm-app-darker-bg;
             overflow-y: auto;
@@ -47,7 +46,10 @@ html, body
 
         > section
         {
-            flex-grow: 1;
+            flex: 1;
+            // FIXME difference
+            // flex-grow: 1;
+            // flex-shrink: 1;
             overflow-y: auto;
         }
     }
