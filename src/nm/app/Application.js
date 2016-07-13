@@ -47,8 +47,8 @@ export default class Application extends NJUApplication
 
         await ServiceClient.getInstance().login();
         this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
+        this.playListView.selection = this.playListView.items[0];
 
-        // FIXME uid is null
         const playlist = await ServiceClient.getInstance().getPlayListDetail(this.playListView.items[0].id);
         this.trackTableView.items = playlist.tracks;
 

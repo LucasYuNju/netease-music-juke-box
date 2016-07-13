@@ -4,8 +4,12 @@ export default class ListView extends View {
     init() {
         super.init();
         this._items = [];
+        this._selection = null;
         this._$liTemplates = [];
         this.addStyleClass("nju-list-view");
+        // TODO 第二个参数是从后代filter
+        this._initLayout();
+        this.$container.on("click", this.getItemElementTag(), this._onclick.bind(this));
     }
 
     getElementTag() {
@@ -14,6 +18,10 @@ export default class ListView extends View {
 
     getItemElementTag() {
         return "li";
+    }
+
+    _initLayout() {
+
     }
 
     get items() {
@@ -25,8 +33,20 @@ export default class ListView extends View {
         this.addItems(value)
     }
 
+    get selection() {
+        return this._selection;
+    }
+
+    set selection(value) {
+        this.selectItem(value);
+    }
+
     getTypeOfItem(item) {
         return 0;
+    }
+
+    getIdOfItem(item) {
+        return item.id;
     }
 
     clearItems() {
@@ -39,7 +59,7 @@ export default class ListView extends View {
     addItems(items) {
         if(items && items.length) {
             items.forEach(item => {
-                this.addItem(item)
+                this.addItem(item);
             })
         }
     }
@@ -51,7 +71,28 @@ export default class ListView extends View {
         this.$container.append($item);
     }
 
+    selectItem(item = null) {
+        if (this.selection === item) {
+            return;
+        }
+
+        if(this.selection !== null) {
+            this.$getItem(this.selection).removeClass("selected");
+            this._selection = null;
+        }
+        this._selection = item;
+
+        if (item) {
+            const $item = this.$getItem(item);
+            $item.addClass("selected");
+        }
+    }
+
+
+
     renderItem(item, $item) {
+        $item.data("item", item);
+        $item.attr("id", "i-" + this.getIdOfItem(item))
     }
 
     createItem(type = 0) {
@@ -63,5 +104,20 @@ export default class ListView extends View {
 
     $createNewItem(type = 0) {
         return $(`<${this.getItemElementTag()}/>`);
+    }
+
+    $getItem(item) {
+        const id = this.getIdOfItem(item)
+        return this.$container.children("#i-" + id);
+    }
+
+    _onclick(e) {
+        const $item = $(e.currentTarget);
+        console.log($item);
+        const item = $item.data("item");
+        console.log(item);
+
+        this.selectItem(item);
+        // $item.toggleClass("selected");
     }
 }

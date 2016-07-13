@@ -18,6 +18,7 @@ export default class PlayListView extends TableView {
     }
 
     renderItem(item, $item) {
+        super.renderItem(item, $item);
         $item.children(".name").text(item.name);
         const formattedTime = TimeUtil.formatPlayTime(item.lMusic.playTime);
         $item.children(".play-time").text(formattedTime);

@@ -3,11 +3,21 @@
     // table 默认这三个属性
     table-layout: fixed;
     border-collapse: collapse;
+
+    tr
+    {
+        cursor: default;
+        &.selected
+        {
+            background-color: @nju-selection-bg !important;
+            color: @nju-striped-color !important;
+        }
+    }
 }
 
 .nju-table-view.striped
 {
-    tr:nth-child(odd)
+    tr:nth-child(odd):not(:selected)
     {
         background: @nju-striped-color;
     }

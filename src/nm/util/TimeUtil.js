@@ -1,10 +1,10 @@
 export default class TimeUtil {
     static formatPlayTime(ms) {
         ms = Math.round(ms / 1000);
-        console.log(ms);
         // FIXME 暂时不考虑小时
-        const minutes = Math.round(ms / 60);
         const seconds = ms %= 60;
+
+        const minutes = (ms - seconds) / 60;
         return digit2(minutes) + ":" + digit2(seconds);
     }
 }
