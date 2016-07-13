@@ -3,7 +3,7 @@ import ListView from "../../nju/view/ListView";
 export default class PlayListView extends ListView {
     init() {
         super.init();
-        this.addStyleClass("nm-play-list-view");
+        this.addStyleClass("nm-play-list-view striped");
     }
 
     $createNewItem() {
