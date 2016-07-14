@@ -9,7 +9,7 @@ export default class ManagedObject {
     }
 
     init() {
-        
+
     }
 
     get id() {
@@ -34,11 +34,11 @@ export default class ManagedObject {
         return this;
     }
 
-    trigger(type, paramters = {}) {
+    trigger(type, parameters = {}) {
         const event = {
             type,
             parameters,
         };
-        this.eventEmitter(type, [event]);
+        this.eventEmitter.trigger(type, [event]);
     }
 }
