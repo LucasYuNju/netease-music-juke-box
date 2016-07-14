@@ -1,9 +1,9 @@
-import Application from "./app/Application";
+import ApplicationController from "./app/ApplicationController";
 import ServiceClient from "./service/ServiceClient";
 
 function main() {
-    const app = new Application();
-    app.placeAt(document.body);
+    const app = new ApplicationController();
+    app.application.placeAt(document.body);
     app.run();
 }
 
