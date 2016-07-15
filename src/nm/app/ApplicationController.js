@@ -79,6 +79,9 @@ export default class ApplicationController extends NJUApplicationController {
 
     // controller, update view
     _onActivePlayListChanged() {
+        if (this.activePlayList.id === "search") {
+            this.application.playListView.selectItem(null);
+        }
         if (this.activePlayList) {
             this.application.trackTableView.items = this.activePlayList.tracks;
         }
@@ -90,13 +93,14 @@ export default class ApplicationController extends NJUApplicationController {
     // controller
     _onActiveTrackChanged() {
         this.application.playerView.track = this.activeTrack;
-        // this.application.playerView.
     }
 
     // model
     async _playListView_selectionchanged(e) {
-        const playList = await ServiceClient.getInstance().getPlayListDetail(this.application.playListView.selectedId);
-        this.activePlayList = playList;
+        if (this.application.playListView.selectedId !== null) {
+            const playList = await ServiceClient.getInstance().getPlayListDetail(this.application.playListView.selectedId);
+            this.activePlayList = playList;
+        }
     }
 
     _trackTableView_activechanged(e) {
@@ -105,7 +109,10 @@ export default class ApplicationController extends NJUApplicationController {
 
     async _searchView_search(e) {
         const keyword = this.application.searchView.text;
-        const result = await ServiceClient.getInstance().search(keyword);
-        console.log(result);
+        const songs = await ServiceClient.getInstance().search(keyword);
+        this.activePlayList = {
+            id: "search",
+            tracks: songs,
+        }
     }
 }
