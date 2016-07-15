@@ -8,6 +8,7 @@ export default class PlayListView extends View {
     }
 
     getElementTag() {
+        // TODO div
         return "span";
     }
 
@@ -18,11 +19,11 @@ export default class PlayListView extends View {
     set track(value) {
         if(value !== this.track) {
             this._track = value;
-            this.renderActive();
+            this.renderTrack();
         }
     }
 
-    renderActive() {
+    renderTrack() {
         this.$element.text(this.track.name);
     }
 }

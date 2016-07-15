@@ -3,7 +3,7 @@ import NJUApplicationController from "../../nju/app/ApplicationController";
 import Application from "./Application";
 import ServiceClient from "../service/ServiceClient";
 
-// 非经典的MVC，将MC放在一起了
+// 不同于经典MVC，将MC放在一起了
 export default class ApplicationController extends NJUApplicationController {
     init() {
         super.init();
@@ -47,6 +47,7 @@ export default class ApplicationController extends NJUApplicationController {
         const application = new Application();
         application.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
         application.trackTableView.on("activechanged", this._trackTableView_activechanged.bind(this));
+        application.searchView.on("search", this._searchView_search.bind(this));
         return application;
     }
 
@@ -99,8 +100,12 @@ export default class ApplicationController extends NJUApplicationController {
     }
 
     _trackTableView_activechanged(e) {
-        // Todo div
         this.activeTrack = this.application.trackTableView.selection;
-        console.log(this.application.trackTableView.selection);
+    }
+
+    async _searchView_search(e) {
+        const keyword = this.application.searchView.text;
+        const result = await ServiceClient.getInstance().search(keyword);
+        console.log(result);
     }
 }
