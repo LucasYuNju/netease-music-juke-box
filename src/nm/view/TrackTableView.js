@@ -21,7 +21,14 @@ export default class PlayListView extends TableView {
     renderItem(item, $item) {
         super.renderItem(item, $item);
         $item.children(".name").text(item.name);
-        const formattedTime = TimeUtil.formatPlayTime(item.lMusic.playTime);
+        let duration = 0;
+        if(item.lMusic) {
+            duration = item.lMusic.playTime;
+        }
+        else {
+            duration = item.duration;
+        }
+        const formattedTime = TimeUtil.formatPlayTime(duration);
         $item.children(".play-time").text(formattedTime);
         $item.children(".artists").text(item.artists.map(artist => artist.name).join(","));
         $item.children(".album").text(item.album.name);

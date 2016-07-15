@@ -12,7 +12,7 @@ export default class ServiceClient {
             ServiceClient._instance = new ServiceClient();
         }
         return ServiceClient._instance;
-    };
+    }
 
     get userId() {
         return this._userId;
@@ -65,6 +65,34 @@ export default class ServiceClient {
         }
         else {
             throw new Error(`getPlayListDetail rejected by netease, code ${res.code}`);
+        }
+    }
+
+    async search(keyword, suggest = false) {
+        let res = null;
+        try {
+            res = await $.ajax({
+                url: suggest ? `${NM_API_URL}/search/suggest/web` : `${NM_API_URL}/search/get`,
+                method: "post",
+                data: {
+                    s: keyword,
+                    type: 1,
+                    offset: 0,
+                    limit: 100,
+                    sub: false
+                }
+            });
+        } catch (e) {
+            throw e;
+        }
+        if(res) {
+            res = JSON.parse(res);
+        }
+        if (res.code === 200) {
+             return res.result.songs;
+        }
+        else {
+            throw new Error(`search rejected by netease, code ${res.code}`);
         }
     }
 }
