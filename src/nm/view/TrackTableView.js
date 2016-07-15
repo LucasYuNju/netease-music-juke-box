@@ -5,6 +5,7 @@ export default class PlayListView extends TableView {
     init() {
         super.init();
         this.addStyleClass("nm-track-table-view striped");
+        this.$container.on("dblclick", this.getItemElementTag(), this._dblclick.bind(this));
     }
 
     $createNewItem() {
@@ -27,17 +28,16 @@ export default class PlayListView extends TableView {
     }
 
     renderHeadItem() {
-        // 要计算时间，单独写出来
-        // const item = {
-        //     name: "标题",
-        //     artists: [{ name: "艺术家" }],
-        //     album: { name: "专辑" },
-        // }
-        // this.renderItem(item, this.$headItem);
         const $item = this.$headItem;
         $item.children(".name").text("标题");
         $item.children(".artists").text("歌手");
         $item.children(".album").text("专辑");
         $item.children(".play-time").text("时长");
+    }
+
+    _dblclick(e) {
+        const $item = $(e.currentTarget);
+        const item = $item.data("item");
+        this.trigger("activechanged");
     }
 }

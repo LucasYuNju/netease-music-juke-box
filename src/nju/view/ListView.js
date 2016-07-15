@@ -7,9 +7,9 @@ export default class ListView extends View {
         this._selection = null;
         this._$liTemplates = [];
         this.addStyleClass("nju-list-view");
-        // TODO 第二个参数是从后代filter
         this._initLayout();
         this.$container.on("click", this.getItemElementTag(), this._onclick.bind(this));
+        
     }
 
     getElementTag() {
@@ -97,8 +97,6 @@ export default class ListView extends View {
         this.trigger("selectionchanged");
     }
 
-
-
     renderItem(item, $item) {
         $item.data("item", item);
         $item.attr("id", "i-" + this.getIdOfItem(item))
@@ -125,6 +123,5 @@ export default class ListView extends View {
         const item = $item.data("item");
 
         this.selectItem(item);
-        // $item.toggleClass("selected");
     }
 }
