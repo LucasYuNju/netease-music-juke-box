@@ -5,7 +5,7 @@ export default class ViewController extends ManagedObject {
     constructor(id, options = {}) {
         super(id);
         this._view =  this.createView();
-        this.applyViewOptions(options);
+        this.initView(options);
     }
 
     get view() {
@@ -16,7 +16,7 @@ export default class ViewController extends ManagedObject {
         return new View();
     }
 
-    applyViewOptions(options = {}) {
+    initView(options = {}) {
         for(let key in options) {
             this.view[key] = options[key];
         }

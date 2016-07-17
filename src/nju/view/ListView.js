@@ -5,11 +5,12 @@ export default class ListView extends View {
         super.init();
         this._items = [];
         this._selection = null;
-        this._$liTemplates = [];
+        this._$itemTemplates = [];
         this.addStyleClass("nju-list-view");
-        this._initLayout();
-        this.$container.on("click", this.getItemElementTag(), this._onclick.bind(this));
 
+        this._initLayout();
+        this.$container.on("mousedown", this.getItemElementTag(), this._onclick.bind(this));
+        // console.log("bind click", this);
     }
 
     getElementTag() {
@@ -103,10 +104,10 @@ export default class ListView extends View {
     }
 
     createItem(type = 0) {
-        if(!this._$liTemplates[type]) {
-            return this._$liTemplates[type] = this.$createNewItem(type);
+        if(!this._$itemTemplates[type]) {
+            return this._$itemTemplates[type] = this.$createNewItem(type);
         }
-        return this._$liTemplates[type].clone();
+        return this._$itemTemplates[type].clone();
     }
 
     $createNewItem(type = 0) {
@@ -121,7 +122,8 @@ export default class ListView extends View {
     _onclick(e) {
         const $item = $(e.currentTarget);
         const item = $item.data("item");
-
+        console.log("listview", "itemclick");
+        this.trigger("itemclick", {item});
         this.selectItem(item);
     }
 }
