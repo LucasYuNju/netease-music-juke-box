@@ -7,17 +7,17 @@
     tr
     {
         cursor: default;
-        &.selected
-        {
-            
-        }
     }
 }
 
 .nju-table-view.striped
 {
-    tr:nth-child(odd):not(:selected)
+    tbody
     {
-        background: @nju-striped-color;
+        tr:nth-child(odd):not(.selected)
+        {
+
+            background: @nju-striped-color;
+        }
     }
 }

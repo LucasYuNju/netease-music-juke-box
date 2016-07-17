@@ -10,7 +10,6 @@ export default class ListView extends View {
 
         this._initLayout();
         this.$container.on("mousedown", this.getItemElementTag(), this._onclick.bind(this));
-        // console.log("bind click", this);
     }
 
     getElementTag() {

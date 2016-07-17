@@ -31,8 +31,8 @@ export default class SearchViewController extends ViewController {
     }
 
     async _searchView_suggest(e) {
-        // TODO delete default keyword
-        const songs = await ServiceClient.getInstance().search("guodegang", true);
+        const keyword = this.view.text;
+        const songs = await ServiceClient.getInstance().search(keyword, true);
         this.suggestions = songs;
     }
 
