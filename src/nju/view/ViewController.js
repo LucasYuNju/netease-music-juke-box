@@ -1,4 +1,5 @@
 import ManagedObject from "../base/ManagedObject";
+import View from "./View";
 
 export default class ViewController extends ManagedObject {
     constructor(id, options = {}) {

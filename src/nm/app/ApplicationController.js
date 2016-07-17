@@ -55,6 +55,7 @@ export default class ApplicationController extends NJUApplicationController {
         console.log("Netease Music Application is now running.");
         await ServiceClient.getInstance().login();
         await this._loadUserPlayLists();
+
         // pseudo login
         // refresh play list view
         // select first play list by default
