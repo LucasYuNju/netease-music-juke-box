@@ -28,6 +28,5 @@ export default class TrackProfileView extends View {
         this.$name.text(this.track.name);
         this.$artist.text(this.track.album.artists.map(artist => artist.name).join(","));
         this.$cover.attr("src", this.track.album.blurPicUrl);
-        console.log(this.track);
     }
 }

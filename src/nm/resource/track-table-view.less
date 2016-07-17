@@ -5,8 +5,6 @@
 
     tr
     {
-        padding-left: 32px;
-        padding-right: 32px;
         line-height: @nm-list-item-height;
 
         td
@@ -17,17 +15,21 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-    }
-
-    thead > tr
-    {
-        border-bottom: 1px solid @nm-separate-color;
-
 
         td:first-child
         {
             padding-left: 32px;
         }
+
+        td:last-child
+        {
+            padding-right: 32px;
+        }
+    }
+
+    thead > tr
+    {
+        border-bottom: 1px solid @nm-separate-color;
 
         td:not(:last-child)
         {

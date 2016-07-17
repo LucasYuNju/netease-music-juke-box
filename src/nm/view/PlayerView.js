@@ -4,12 +4,8 @@ export default class PlayListView extends View {
     init() {
         super.init();
         this._track = null;
-        // this.$name = $(`<span class="track-name"/>`);
-        // this.$element.append(this.$name);
-        const $audio = $(`<audio controls><source/></audio>`);
-        $audio.append(this.$source);
-        this.$element.append($audio);
-        this.$source = this.$("> audio > source");
+        this.$audio = $(`<audio controls autoplay loop/>`);
+        this.$element.append(this.$audio);
         this.addStyleClass("nm-player-view");
     }
 
@@ -29,8 +25,8 @@ export default class PlayListView extends View {
     }
 
     renderPlayer() {
-        console.log("render track player");
-        // this.$name.text(this.track.name);
-        // console.log(this.track);
+        console.log(this.track);
+        const mp3 = this.track.mp3Url;
+        this.$audio.attr("src", mp3);
     }
 }

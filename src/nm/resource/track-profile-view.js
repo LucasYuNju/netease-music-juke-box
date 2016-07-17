@@ -25,7 +25,7 @@
         float: left;
         margin: 10px;
         // margin-left: -80px;
-        width: @nm-app-track-profile-height;
-        height: @nm-app-track-profile-height;
+        width: @nm-app-track-profile-height - 20;
+        height: @nm-app-track-profile-height - 20;
     }
 }

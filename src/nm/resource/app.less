@@ -53,16 +53,16 @@ html, body
             width: @nm-app-sidebar-width;
             border-right: 1px solid @nm-separate-color;
             background-color: @nm-app-darker-bg;
-            overflow-y: auto;
             display: flex;
             flex-direction: column;
 
-            > ul
+            > ul.nm-play-list-view
             {
+                overflow-y: auto;
                 flex-grow: 1;
             }
 
-            > .nm-track-profile-view
+            > div.nm-track-profile-view
             {
                 border-top: 1px solid @nm-separate-color;
             }
