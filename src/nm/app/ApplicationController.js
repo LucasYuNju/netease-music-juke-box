@@ -93,6 +93,7 @@ export default class ApplicationController extends NJUApplicationController {
 
     // controller
     _onActiveTrackChanged() {
+        this.application.trackProfileView.track = this.activeTrack;
         this.application.playerView.track = this.activeTrack;
     }
 

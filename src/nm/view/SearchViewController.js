@@ -18,7 +18,7 @@ export default class SearchViewController extends ViewController {
     }
 
     createView() {
-        return new SearchView();
+        return new SearchView("search");
     }
 
     get suggetions() {

@@ -6,7 +6,7 @@ export default class Application extends View
 
     constructor(...args) {
         super(...args);
-        if(Application._instance === null) {
+        if (Application._instance === null) {
             Application._intance = this;
         }
         else {

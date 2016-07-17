@@ -54,7 +54,7 @@ export default class View extends ManagedObject {
     }
 
     addSubviews(views, $container = this.$container) {
-        if(Array.isArray(views)) {
+        if (Array.isArray(views)) {
             views.forEach(view => this.addSubview(view, $container));
         }
     }
@@ -67,7 +67,7 @@ export default class View extends ManagedObject {
 
     removeSubview(view, neverUseAgain = false) {
         const idx = this.subviews.indexof(view);
-        if(idx !== -1) {
+        if (idx !== -1) {
             view._parent = null;
             this.subviews.splice(idx, 1);
             if (neverUseAgain) {

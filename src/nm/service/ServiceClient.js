@@ -40,7 +40,7 @@ export default class ServiceClient {
         } catch (e) {
             throw e;
         }
-        if(res.code === 200) {
+        if (res.code === 200) {
             return res.playlist;
         }
         else {
@@ -85,7 +85,7 @@ export default class ServiceClient {
         } catch (e) {
             throw e;
         }
-        if(res) {
+        if (res) {
             res = JSON.parse(res);
         }
         if (res.code === 200) {

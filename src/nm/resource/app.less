@@ -36,8 +36,9 @@ html, body
             color: white;
         }
 
-        > .nm-search-view
+        > #search
         {
+            color: @text-color;
             margin-left: 100px;
         }
     }
@@ -53,14 +54,26 @@ html, body
             border-right: 1px solid @nm-separate-color;
             background-color: @nm-app-darker-bg;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+
+            > ul
+            {
+                flex-grow: 1;
+            }
+
+            > .nm-track-profile-view
+            {
+                border-top: 1px solid @nm-separate-color;
+            }
         }
 
         > section
         {
-            // FIXME difference flex-basis
-            flex: 1;
+            // FIXME difference between flex & flex-basis
             // flex-grow: 1;
             // flex-shrink: 1;
+            flex: 1;
             overflow-y: auto;
         }
     }

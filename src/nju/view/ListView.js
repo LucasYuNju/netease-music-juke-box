@@ -58,14 +58,14 @@ export default class ListView extends View {
 
     clearItems() {
         this.selection = null;
-        if(this.items.length > 0) {
+        if (this.items.length > 0) {
             this._items.splice(0, this._items.length);
             this.$container.children(this.getItemElementTag()).remove();
         }
     }
 
     addItems(items) {
-        if(items && items.length) {
+        if (items && items.length) {
             items.forEach(item => {
                 this.addItem(item);
             })
@@ -84,7 +84,7 @@ export default class ListView extends View {
             return;
         }
 
-        if(this.selection !== null) {
+        if (this.selection !== null) {
             this.$getItem(this.selection).removeClass("selected");
             this._selection = null;
         }
@@ -103,7 +103,7 @@ export default class ListView extends View {
     }
 
     createItem(type = 0) {
-        if(!this._$itemTemplates[type]) {
+        if (!this._$itemTemplates[type]) {
             return this._$itemTemplates[type] = this.$createNewItem(type);
         }
         return this._$itemTemplates[type].clone();
@@ -121,7 +121,6 @@ export default class ListView extends View {
     _onclick(e) {
         const $item = $(e.currentTarget);
         const item = $item.data("item");
-        console.log("listview", "itemclick");
         this.trigger("itemclick", {item});
         this.selectItem(item);
     }

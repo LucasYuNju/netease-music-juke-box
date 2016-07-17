@@ -4,6 +4,7 @@ import TimeUtil from "../util/TimeUtil";
 export default class PlayListView extends TableView {
     init() {
         super.init();
+
         this.addStyleClass("nm-track-table-view striped");
         this.$container.on("dblclick", this.getItemElementTag(), this._dblclick.bind(this));
     }
@@ -22,7 +23,7 @@ export default class PlayListView extends TableView {
         super.renderItem(item, $item);
         $item.children(".name").text(item.name);
         let duration = 0;
-        if(item.lMusic) {
+        if (item.lMusic) {
             duration = item.lMusic.playTime;
         }
         else {

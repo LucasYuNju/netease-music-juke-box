@@ -6,7 +6,7 @@ export default class ApplicationController extends ViewController {
 
     constructor(...args) {
         super(...args);
-        if(ApplicationController._instance === null) {
+        if (ApplicationController._instance === null) {
             ApplicationController._intance = this;
         }
         else {

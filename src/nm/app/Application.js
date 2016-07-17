@@ -4,6 +4,7 @@ import PlayerView from "../view/PlayerView";
 import PlayListView from "../view/PlayListView";
 import SearchView from "../view/SearchView";
 import SearchViewController from "../view/SearchViewController";
+import TrackProfileView from "../view/TrackProfileView";
 import TrackTableView from "../view/TrackTableView";
 
 export default class Application extends NJUApplication
@@ -15,6 +16,7 @@ export default class Application extends NJUApplication
         this.initPlayerView();
         this.initPlayListView();
         this.initSearchView();
+        this.initTrackProfileView();
         this.initTrackTableView();
     }
 
@@ -22,7 +24,7 @@ export default class Application extends NJUApplication
         this.$element.append(`
             <header>
                 <span class="logo iconfont icon-netease-music"></span>
-                <h1>黄易云音乐</h1></header>
+                <h1>网之易云音乐</h1></header>
             <main>
                 <aside class="sidebar"></aside>
                 <section class="content"></section>
@@ -45,6 +47,11 @@ export default class Application extends NJUApplication
         this.searchViewController = new SearchViewController();
         this.searchView = this.searchViewController.view;
         this.addSubview(this.searchView, this.$("> header"));
+    }
+
+    initTrackProfileView() {
+        this.trackProfileView = new TrackProfileView();
+        this.addSubview(this.trackProfileView, this.$("> main > aside.sidebar"));
     }
 
     initTrackTableView() {
