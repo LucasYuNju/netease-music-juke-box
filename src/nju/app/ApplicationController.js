@@ -31,6 +31,6 @@ export default class ApplicationController extends ViewController {
     }
 
     createApplication(options = {}) {
-        return new Applicaiton();
+        throw new Error("createApplication(options) method must be implemented in derived class.");
     }
 }

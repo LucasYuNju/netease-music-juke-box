@@ -13,7 +13,7 @@ export default class ViewController extends ManagedObject {
     }
 
     createView(options) {
-        return new View();
+        throw new Error("createView(options) method must be implemented in derived class.");
     }
 
     initView(options = {}) {
