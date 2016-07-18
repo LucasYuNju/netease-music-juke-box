@@ -2,9 +2,10 @@ import NJUApplication from "../../nju/app/Application";
 
 import PlayerView from "../view/PlayerView";
 import PlayListView from "../view/PlayListView";
+import PlayerViewController from "../view/PlayerViewController";
 import SearchView from "../view/SearchView";
 import SearchViewController from "../view/SearchViewController";
-import TrackProfileView from "../view/TrackProfileView";
+import TrackView from "../view/TrackView";
 import TrackTableView from "../view/TrackTableView";
 
 export default class Application extends NJUApplication
@@ -16,7 +17,7 @@ export default class Application extends NJUApplication
         this.initPlayerView();
         this.initPlayListView();
         this.initSearchView();
-        this.initTrackProfileView();
+        this.initTrackView();
         this.initTrackTableView();
     }
 
@@ -34,7 +35,8 @@ export default class Application extends NJUApplication
     }
 
     initPlayerView() {
-        this.playerView = new PlayerView("play-view");
+        // this.playerViewController = new PlayerViewController();
+        this.playerView = new PlayerView("player");
         this.addSubview(this.playerView, this.$("> footer"))
     }
 
@@ -49,9 +51,10 @@ export default class Application extends NJUApplication
         this.addSubview(this.searchView, this.$("> header"));
     }
 
-    initTrackProfileView() {
-        this.trackProfileView = new TrackProfileView();
-        this.addSubview(this.trackProfileView, this.$("> main > aside.sidebar"));
+    initTrackView() {
+        this.trackView = new TrackView("track-profile");
+        this.trackView.hide();
+        this.addSubview(this.trackView, this.$("> main > aside.sidebar"));
     }
 
     initTrackTableView() {

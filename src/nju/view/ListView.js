@@ -29,13 +29,13 @@ export default class ListView extends View {
     }
 
     set items(value) {
-        // TODO reuse items
         this._items = value;
         this.clearItems(false);
         this.resizeItems(value);
+
         const $items = this.$container.children(this.getItemElementTag());
         for (let i = 0; i < value.length; i++) {
-            this.renderItem(value[i], $($items[i]));
+            this.renderItem(value[i], $items.eq(i));
         }
     }
 
