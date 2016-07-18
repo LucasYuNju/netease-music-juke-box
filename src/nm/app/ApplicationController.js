@@ -80,18 +80,12 @@ export default class ApplicationController extends NJUApplicationController {
 
     // controller, update view
     _onActivePlayListChanged() {
-
+        // FIXME
         if (this.activePlayList) {
             this.application.trackTableView.items = this.activePlayList.tracks;
             if (this.activePlayList.id === "search") {
-                this.application.playListView.hideSelection();
+                this.application.playListView.selection = null;
             }
-            else {
-                this.application.playListView.showSelection();
-            }
-        }
-        else {
-            this.application.trackTableView.items = [];
         }
     }
 
