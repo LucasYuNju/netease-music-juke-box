@@ -30,8 +30,13 @@ export default class ListView extends View {
 
     set items(value) {
         // TODO reuse items
-        this.clearItems();
-        this.addItems(value)
+        this._items = value;
+        this.clearItems(false);
+        this.resizeItems(value);
+        const $items = this.$container.children(this.getItemElementTag());
+        for (let i = 0; i < value.length; i++) {
+            this.renderItem(value[i], $($items[i]));
+        }
     }
 
     get selection() {
@@ -57,26 +62,40 @@ export default class ListView extends View {
         return null;
     }
 
-    clearItems() {
+    clearItems(remove = true) {
         this.selection = null;
         if (this.items.length > 0) {
-            this._items.splice(0, this._items.length);
-            this.$container.children(this.getItemElementTag()).remove();
+            if (remove) {
+                this._items.splice(0, this._items.length);
+                this.$container.children(this.getItemElementTag()).remove();
+            }
+            else {
+                this.$container.children(this.getItemElementTag()).data("item", null);
+                this.$container.children(this.getItemElementTag()).removeAttr("id");
+            }
         }
     }
 
-    addItems(items) {
-        if (items && items.length) {
-            items.forEach(item => {
-                this.addItem(item);
-            })
+    resizeItems(items) {
+        const $items = this.$container.children(this.getItemElementTag());
+        if (items.length > $items.length) {
+            // add $item
+            const numToAdd = items.length - $items.length;
+            for (let i = 0; i < numToAdd; i++) {
+                this.addItem(items[i]);
+            }
+        }
+        else {
+            // remove $item
+            const numToDel = $items.length - items.length;
+            $items.slice($items.length - numToDel).remove();
         }
     }
 
     addItem(item) {
-        this.items.push(item);
+        // this.items.push(item);
         const $item = this.createItem(this.getTypeOfItem(item));
-        this.renderItem(item, $item);
+        // this.renderItem(item, $item);
         this.$container.append($item);
     }
 
@@ -96,14 +115,6 @@ export default class ListView extends View {
             $item.addClass("selected");
         }
         this.trigger("selectionchanged");
-    }
-
-    showSelection() {
-        this.removeStyleClass("hide-selection");
-    }
-
-    hideSelection() {
-        this.addStyleClass("hide-selection");
     }
 
     renderItem(item, $item) {
