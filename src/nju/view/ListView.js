@@ -29,6 +29,7 @@ export default class ListView extends View {
     }
 
     set items(value) {
+        // TODO reuse items
         this.clearItems();
         this.addItems(value)
     }
@@ -95,6 +96,14 @@ export default class ListView extends View {
             $item.addClass("selected");
         }
         this.trigger("selectionchanged");
+    }
+
+    showSelection() {
+        this.removeStyleClass("hide-selection");
+    }
+
+    hideSelection() {
+        this.addStyleClass("hide-selection");
     }
 
     renderItem(item, $item) {

@@ -13,6 +13,12 @@
         white-space: nowrap;
         overflow-x: hidden;
         cursor: default;
+
+        &.selected
+        {
+            background-color: @nju-selection-bg;
+            color: @nju-selection-color;
+        }
     }
 }
 
@@ -21,5 +27,14 @@
     li:nth-child(2n)
     {
         background: @nju-striped-color;
+    }
+}
+
+.nju-list-view.hide-selection
+{
+    li.selected
+    {
+        color: unset;
+        background-color: blue;
     }
 }
