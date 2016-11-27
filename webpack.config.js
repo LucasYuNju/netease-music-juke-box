@@ -51,11 +51,35 @@ module.exports = {
             "/api/*": {
                 target: "http://music.163.com/",
                 host: "music.163.com",
+                changeOrigin: true,
                 secure: false,
                 headers: {
                     "Referer": "http://music.163.com",
                 }
-            }
+            }, 
+            "/b/*": {
+                target: "https://api.github.com/",
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: {
+                  '/b' : ''
+                },
+                headers: {
+                    "Referer": "https://api.github.com",
+                }
+            },
+            // "/api": {
+            //     target: "http://jsonplaceholder.typicode.com/",
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         "^/api": ""
+            //     },
+            //     bypass: function(req) {
+            //         if(req.url === "/api/nope") {
+            //             return "/bypass.html";
+            //         }
+            //     }
+            // }
         }
     }
 };
