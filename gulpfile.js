@@ -7,7 +7,7 @@ const rimraf = require("rimraf");
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 
-gulp.task("default", [ "dist" ]);
+gulp.task("default", [ "watch", "dev" ]);
 
 
 gulp.task("clean", cb => {
@@ -30,10 +30,16 @@ gulp.task("dev", [ "clean" ], cb => {
     new WebpackDevServer(compiler, {
         publicPath: config.output.publicPath,
         proxy: config.devServer.proxy
-    }).listen(8080, "localhost", err => {
+    }).listen(8083, "localhost", err => {
         if (err) throw new gutil.PluginError("webpack-dev-server", err);
-        const uri = "http://localhost:8080/";
+        const uri = "http://localhost:8083/api";
         gutil.log("[webpack-dev-server]", uri);
-        gulp.src("").pipe(open({ uri }));
+        // gulp.src("").pipe(open({ uri }));
     });
+});
+
+gulp.task('watch', function() {
+// Watch .js files
+  gulp.watch('./webpack.config.js', ['dev']);
+
 });
